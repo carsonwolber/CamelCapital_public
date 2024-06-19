@@ -1,0 +1,91 @@
+These instructions were created for MacOS/Linux users in mind
+
+
+This project uses Python files. Before beginning, check if you have Python installed with the terminal command
+
+$ python --version
+
+If you do not have Python installed, you can install it with Homebrew with:
+
+$ brew install python
+
+If you do not have Homebrew, you can download Python on this website:
+
+https://www.python.org/downloads/
+
+
+Several external packages are required to run this application. You can install all of them with opam:
+
+
+$ opam install batteries
+$ opam install bogue
+$ opam install gsl
+$ opam install ANSITerminal
+$ opam install bisect_ppx
+$ opam update
+$ opam upgrade
+
+Next, open up the CamelCapital folder with a command-line terminal. Once there, open the source code of the project with:
+
+$ cd CC
+
+Then run
+
+$ dune build
+
+If you get an error, try running:
+
+$ dune clean
+$ dune build
+
+Example Usage:
+
+For Backtesting: 
+
+  To launch 10-year backtest tool (with gui):
+
+  $ dune exec bin/main.exe -- gui
+  
+  Once the GUI opens, in the top left you can enter in a ticker and starting balance where it says "Enter starting balance"
+  ie: AAPL 100000
+      GME 200000
+      
+  Next to "Enter starting balance," there's also an option to designate your risk level as 1, 2, or 3.
+  
+
+  To run a 10-year backtest on a single ticker (no gui):
+
+  $ dune exec bin/main.exe terminal
+  
+  For an example, you can try using AAPL as your ticker. 100000 as your desired starting capital, and 3 as your risk.
+  
+  
+  
+  If you don't want any interface, you may use only command line flags with
+
+  $ dune exec bin/main.exe -- ticker <ticker_code> <starting_balance>
+  
+  ie: $ dune exec bin/main.exe -- ticker AMC 10000
+      You will later be prompted for your risk level, try using "2"
+
+For Paper Trading:
+
+  To launch GUI:
+
+  $ dune exec bin/realtime.exe -- -realtime gui
+
+    - Once in the paper trading GUI, enter a ticker (ex. AAPL) in the top left and a press start. You won't see anything at the beginning, but after a few seconds, press refresh, and it should update.
+    - The program continuously checks the price of a stock until it is under "True Range." Once it's under True Range, it stops the program (to purchase the stock).
+
+
+  To start trading loop without GUI:
+
+  $ dune exec bin/realtime.exe -- <ticker> -realtime
+  
+  ie. dune exec bin/realtime.exe -- AAPL -realtime
+  
+  Feel free to modify the starting balance in trader_state.txt 
+
+
+
+

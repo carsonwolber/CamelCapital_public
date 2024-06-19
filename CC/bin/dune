@@ -1,0 +1,11 @@
+(executable
+ (public_name cc_main)
+ (name main)
+ (modules main)
+ (libraries batteries CC bogue ANSITerminal))
+
+(executable
+ (public_name realtime_exe)
+ (name realtime)
+ (modules realtime)
+ (libraries batteries CC bogue ANSITerminal))
